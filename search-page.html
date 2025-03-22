@@ -4,29 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HydraHit - Simple Search</title>
-  <link rel="stylesheet" href="styles.css">
+<link rel="preload" href="HerticalSans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+  
 </head>
 <body>
   <div class="logo-container">
     <div class="logo-icon">
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="25" fill="#f2f2f2" stroke="#ff6600" stroke-width="2" />
-        <path d="M30 15 L30 45" stroke="#ff6600" stroke-width="3" stroke-linecap="round" />
-        <path d="M15 30 L45 30" stroke="#ff6600" stroke-width="3" stroke-linecap="round" />
-        <circle cx="30" cy="30" r="8" fill="#ff6600" />
-      </svg>
+      <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Circle -->
+  <circle cx="25" cy="25" r="22" stroke="#ff6600" stroke-width="3" fill="none"/>
+
+  <!-- Solid Center Circle -->
+  <circle cx="25" cy="25" r="1" stroke="#ff6600" stroke-width="3" fill="#ff6600"/>
+
+  <!-- Crosshair Lines -->
+  <rect x="10" y="24" width="7.5" height="3" fill="#ff6600"/>
+  <rect x="32.5" y="24" width="7.5" height="3" fill="#ff6600"/>
+  <rect x="24" y="10" width="3" height="7.5" fill="#ff6600"/>
+  <rect x="24" y="32.5" width="3" height="7.5" fill="#ff6600"/>
+</svg>
+
+
     </div>
     <div class="logo-text">
       HYDRA<span class="highlight">HIT</span>
     </div>
   </div>
 
-  <div class="search-container" style="position: relative;">
+  <div class="search-container">
     <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off" />
     <button class="search-button" id="searchButton">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M21 21L16.65 16.65" stroke="#777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M21 21L16.65 16.65" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
     <div class="suggestions" id="suggestions" style="display: none;"></div>
@@ -99,6 +110,15 @@
         document.body.appendChild(script);
       }
 
+      // Function to add suggestion to search input
+      function addSuggestionToInput(suggestion) {
+        searchInput.value = suggestion;
+        searchInput.focus();
+        // Position cursor at the end of the input
+        const inputLength = searchInput.value.length;
+        searchInput.setSelectionRange(inputLength, inputLength);
+      }
+
       // This function will be called by the JSONP response
       window.handleSuggestions = function(data) {
         const suggestions = data[1] || [];
@@ -106,11 +126,28 @@
         suggestions.forEach(suggestion => {
           const suggestionElement = document.createElement('div');
           suggestionElement.className = 'suggestion-item';
-          suggestionElement.textContent = suggestion;
+          
+          const suggestionText = document.createElement('div');
+          suggestionText.className = 'suggestion-text';
+          suggestionText.textContent = suggestion;
+          
+          const arrowButton = document.createElement('button');
+          arrowButton.className = 'arrow-button';
+          arrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M704-240 320-624v344h-80v-480h480v80H376l384 384-56 56Z"/></svg>';
+          arrowButton.title = "Edit this suggestion";
+          arrowButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent triggering the parent click
+            addSuggestionToInput(suggestion);
+          });
+          
+          suggestionElement.appendChild(suggestionText);
+          suggestionElement.appendChild(arrowButton);
+          
           suggestionElement.addEventListener('click', function() {
             searchInput.value = suggestion;
             performSearch();
           });
+          
           suggestionsContainer.appendChild(suggestionElement);
         });
         suggestionsContainer.style.display = suggestions.length ? 'block' : 'none';
@@ -121,4 +158,4 @@
     });
   </script>
 </body>
-</html>
+  </html>
