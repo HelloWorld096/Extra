@@ -33,6 +33,12 @@
   }
 }
 
+@font-face {
+  font-family: 'Hertical Sans';
+  src: url('HerticalSans.woff2') format('woff2');
+  font-display: swap;
+}
+
 body {
   display: flex;
   flex-direction: column;
