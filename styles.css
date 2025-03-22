@@ -1,83 +1,179 @@
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            
-        }
-        
-        .logo-container {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        
-        .logo-text {
-            font-size: 40px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        
-        .logo-text .highlight {
-            color: #ff6600;
-        }
-        
-        .logo-icon {
-            margin-bottom: 10px;
-        }
-        
-        .search-container {
-            width: 100%;
-            max-width: 600px;
-            position: relative;
-            margin-bottom: 30px;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 30px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-            outline: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .search-button {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-        }
-        
-        .suggestions {
-            position: absolute;
-            width: 100%;
-            background: white;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 10;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .suggestion-item {
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        
-        .suggestion-item:hover {
-            background-color: #f8f8f8;
-        }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* CSS Variables for themes */
+:root {
+  --background-color: #f9f9f9;
+  --card-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #dddddd;
+  --highlight-color: #ff6600;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-color: #f5f5f5;
+  --icon-color: #777777;
+  --logo-bg: #f2f2f2;
+}
+
+/* Dark theme variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1a1a1a;
+    --card-color: #2a2a2a;
+    --text-color: #f0f0f0;
+    --border-color: #444444;
+    --highlight-color: #ff6600;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --hover-color: #353535;
+    --icon-color: #bbbbbb;
+    --logo-bg: #2a2a2a;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo-text {
+  font-family: 'Hertical Sans';
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 0px;
+  margin-left: 0;
+}
+
+.highlight {
+  color: var(--highlight-color);
+}
+
+.search-container {
+  width: 100%;
+  max-width: 580px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 50px 15px 20px;
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px var(--shadow-color);
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  background-color: var(--card-color);
+  color: var(--text-color);
+}
+
+.search-input:focus {
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border-color: var(--highlight-color);
+}
+
+.search-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.search-button svg path {
+  stroke: var(--highlight-color);
+}
+
+.suggestions {
+  position: absolute;
+  width: 100%;
+  background: var(--card-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  margin-top: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.suggestion-item {
+  padding: 12px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: var(--hover-color);
+}
+
+.suggestion-text {
+  flex: 1;
+}
+
+.arrow-button {
+  color: var(--icon-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  transition: background-color 0.2s;
+}
+
+.arrow-button:hover {
+  background-color: var(--hover-color);
+}
+
+.arrow-button svg {
+  fill: var(--icon-color);
+  transition: fill 0.2s;
+}
+
+.arrow-button:hover svg {
+  fill: var(--highlight-color);
+}
+
+/* Logo SVG theme adaptation */
+.logo-icon svg circle {
+  fill: var(--logo-bg);
+  stroke: var(--highlight-color);
+}
+
+.logo-icon svg line, 
+.logo-icon svg path,
+.logo-icon svg circle:not(:first-child) {
+  stroke: var(--highlight-color);
+}
