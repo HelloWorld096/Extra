@@ -1,0 +1,83 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            
+        }
+        
+        .logo-container {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .logo-text {
+            font-size: 40px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text .highlight {
+            color: #ff6600;
+        }
+        
+        .logo-icon {
+            margin-bottom: 10px;
+        }
+        
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        .suggestions {
+            position: absolute;
+            width: 100%;
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 10;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .suggestion-item {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        .suggestion-item:hover {
+            background-color: #f8f8f8;
+        }
