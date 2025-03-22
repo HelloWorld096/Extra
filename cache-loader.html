@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+  <script>
+    const CACHE_KEY_HTML = "cached_search_page";
+    const CACHE_KEY_CSS = "cached_styles";
+    const EXPIRY_KEY_HTML = "expiry_search_page";
+    const EXPIRY_KEY_CSS = "expiry_styles";
+    const CACHE_EXPIRY_DAYS = 5;
+
+    function isCacheValid(expiryKey) {
+      const expiry = localStorage.getItem(expiryKey);
+      return expiry && Date.now() < Number(expiry);
+    }
+
+    function loadCachedPage() {
+      const cachedHTML = localStorage.getItem(CACHE_KEY_HTML);
+      const cachedCSS = localStorage.getItem(CACHE_KEY_CSS);
+
+      if (cachedHTML && cachedCSS && isCacheValid(EXPIRY_KEY_HTML) && isCacheValid(EXPIRY_KEY_CSS)) {
+        document.open();
+        document.write(cachedHTML.replace("</head>", `<style>${cachedCSS}</style></head>`));
+        document.close();
+      } else {
+        fetchAndCache("search-page.html", CACHE_KEY_HTML, EXPIRY_KEY_HTML);
+        fetchAndCache("styles.css", CACHE_KEY_CSS, EXPIRY_KEY_CSS, true);
+      }
+    }
+
+    function fetchAndCache(url, cacheKey, expiryKey, isCSS = false) {
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          localStorage.setItem(cacheKey, data);
+          localStorage.setItem(expiryKey, Date.now() + CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000);
+          if (isCSS) {
+            loadCachedPage();
+          }
+        })
+        .catch(error => console.error(`Error caching ${url}:`, error));
+    }
+
+    loadCachedPage();
+  </script>
+</head>
+<body>
+  <h3>Loading...</h3>
+</body>
+</html>
