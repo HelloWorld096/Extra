@@ -68,6 +68,7 @@ body {
 }
 
 .highlight {
+  font-family: 'Hertical Sans', Arial, sans-serif;
   color: var(--highlight-color);
 }
 
