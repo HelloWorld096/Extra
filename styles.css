@@ -5,6 +5,16 @@
   font-family: Arial, sans-serif;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* CSS Variables for themes */
 :root {
   --background-color: #f9f9f9;
