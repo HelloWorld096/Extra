@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HydraHit - Simple Search</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Basic styling for suggestions */
+    .suggestions {
+      border: 1px solid #ccc;
+      max-width: 300px;
+      margin-top: 5px;
+      background: #fff;
+      position: absolute;
+      z-index: 1000;
+    }
+    .suggestion-item {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .suggestion-item:hover {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <div class="logo-icon">
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="30" r="25" fill="#f2f2f2" stroke="#ff6600" stroke-width="2" />
+        <path d="M30 15 L30 45" stroke="#ff6600" stroke-width="3" stroke-linecap="round" />
+        <path d="M15 30 L45 30" stroke="#ff6600" stroke-width="3" stroke-linecap="round" />
+        <circle cx="30" cy="30" r="8" fill="#ff6600" />
+      </svg>
+    </div>
+    <div class="logo-text">
+      HYDRA<span class="highlight">HIT</span>
+    </div>
+  </div>
+
+  <div class="search-container" style="position: relative;">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search..." autocomplete="off" />
+    <button class="search-button" id="searchButton">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M21 21L16.65 16.65" stroke="#777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+    <div class="suggestions" id="suggestions" style="display: none;"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('searchInput');
+      const suggestionsContainer = document.getElementById('suggestions');
+      const searchButton = document.getElementById('searchButton');
+
+      // Handle search submission
+      function performSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+      }
+
+      searchButton.addEventListener('click', performSearch);
+
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          performSearch();
+        }
+      });
+
+      // Show/hide suggestions container on focus
+      searchInput.addEventListener('focus', function() {
+        if (this.value.trim() !== '') {
+          suggestionsContainer.style.display = 'block';
+        }
+      });
+
+      // Debounce and fetch Google suggestions
+      let timeoutId;
+      searchInput.addEventListener('input', function() {
+        clearTimeout(timeoutId);
+
+        const query = this.value.trim();
+        if (query === '') {
+          suggestionsContainer.style.display = 'none';
+          return;
+        }
+
+        timeoutId = setTimeout(() => {
+          getSearchSuggestions(query);
+        }, 300);
+      });
+
+      // Hide suggestions when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+          suggestionsContainer.style.display = 'none';
+        }
+      });
+
+      // Fetch Google search suggestions
+      function getSearchSuggestions(query) {
+        fetch(`https://suggestqueries.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}`)
+          .then(response => response.json())
+          .then(data => {
+            const suggestions = data[1] || [];
+            suggestionsContainer.innerHTML = '';
+            suggestions.forEach(suggestion => {
+              const suggestionElement = document.createElement('div');
+              suggestionElement.className = 'suggestion-item';
+              suggestionElement.textContent = suggestion;
+              suggestionElement.addEventListener('click', function() {
+                searchInput.value = suggestion;
+                performSearch();
+              });
+              suggestionsContainer.appendChild(suggestionElement);
+            });
+            suggestionsContainer.style.display = suggestions.length ? 'block' : 'none';
+          })
+          .catch(error => {
+            console.error('Error fetching suggestions:', error);
+          });
+      }
+
+      // Initialize focus on search input
+      searchInput.focus();
+    });
+  </script>
+</body>
+</html>
