@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GeckoView Browser Learning Path</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 2rem;
+      color: #222;
+    }
+    h2 {
+      background-color: #343a40;
+      color: #fff;
+      padding: 0.5rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 2rem;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f3f5;
+    }
+    td code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧠 GeckoView Android Browser – Full Learning Path (Go + Kotlin)</h1>
+
+<!-- Week 1 -->
+<h2>✅ Week 1 – Language Basics & File I/O</h2>
+
+<h3>📘 Go (Backend)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr><td>1</td><td>Setup + Hello Go</td><td>Install Go, write and run a simple <code>main()</code> program</td><td><code>fmt.Println("Hello Go")</code></td></tr>
+  <tr><td>2</td><td>Functions + Vars</td><td>Learn func, parameters, return values, type inference</td><td><code>func add(a int, b int) int { return a + b }</code></td></tr>
+  <tr><td>3</td><td>Structs</td><td>Define a <code>Bookmark</code> struct</td><td><code>type Bookmark struct { Title, URL string }</code></td></tr>
+  <tr><td>4</td><td>Slices + Loops</td><td>Add/remove <code>Bookmark</code>s to a slice, loop and print</td><td><code>for _, b := range bookmarks { ... }</code></td></tr>
+  <tr><td>5</td><td>JSON Marshal</td><td>Convert slice of bookmarks to JSON, print/save</td><td><code>json.Marshal(bookmarks)</code></td></tr>
+  <tr><td>6</td><td>JSON Unmarshal</td><td>Read JSON from file, convert back to slice</td><td><code>json.Unmarshal(data, &bookmarks)</code></td></tr>
+  <tr><td>7</td><td>Mini Tool</td><td>CLI tool: Add bookmark via <code>os.Args</code>, save to JSON</td><td><code>go run bookmarks.go add "YouTube" "https://..."</code></td></tr>
+</table>
+
+<h3>📗 Kotlin (Frontend)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr><td>1</td><td>Setup + Hello Kotlin</td><td>Install AndroidIDE or IntelliJ, print to console</td><td><code>println("Hello Kotlin")</code></td></tr>
+  <tr><td>2</td><td>Functions + Vars</td><td>Write simple <code>add()</code> and <code>greet()</code> functions</td><td><code>fun greet(name: String): String = "Hi $name"</code></td></tr>
+  <tr><td>3</td><td>Lists + Loops</td><td>Loop through a list of strings</td><td><code>for (item in listOf("a", "b")) println(item)</code></td></tr>
+  <tr><td>4</td><td>Data Classes</td><td>Define <code>Bookmark(title: String, url: String)</code></td><td><code>data class Bookmark(val title: String, val url: String)</code></td></tr>
+  <tr><td>5</td><td>File Writing (JSON)</td><td>Save bookmarks to file with JSON lib</td><td>Use <code>org.json</code> or <code>kotlinx.serialization</code></td></tr>
+  <tr><td>6</td><td>File Reading (JSON)</td><td>Read from file and parse JSON</td><td>Print bookmarks to log</td></tr>
+  <tr><td>7</td><td>Mini App</td><td>CLI-style app that saves/loads bookmarks</td><td>Save/load bookmarks locally</td></tr>
+</table>
+
+<!-- Week 2 -->
+<h2>🚀 Week 2 – Concurrency (Go) + Android App UI Basics (Kotlin)</h2>
+
+<h3>📘 Go (Backend – Goroutines & Channels)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Goroutines Basics</td>
+    <td>Launch functions as goroutines, explore concurrency</td>
+    <td><code>go fetchBookmarks()</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Channels Intro</td>
+    <td>Create channels to send/receive messages between goroutines</td>
+    <td><code>ch := make(chan string); ch &lt;- "done"</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Select Statement</td>
+    <td>Use <code>select</code> to handle multiple channel inputs</td>
+    <td><code>select { case msg := &lt;-ch: fmt.Println(msg) }</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>WaitGroups</td>
+    <td>Wait for multiple goroutines to finish</td>
+    <td><code>var wg sync.WaitGroup</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Worker Pool</td>
+    <td>Build basic worker pool to process URLs concurrently</td>
+    <td>Fetch metadata from multiple sites in parallel</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Goroutine Tool</td>
+    <td>Mini tool to download multiple sites and write summary</td>
+    <td>Use goroutines + file I/O + JSON output</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Channel Practice</td>
+    <td>Practice: channel of bookmarks passed between workers</td>
+    <td>Test queue-based architecture</td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Android UI Basics)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Android Project Setup</td>
+    <td>Create blank app, run it on device/emulator</td>
+    <td>Show “Hello Gecko” TextView</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>UI XML Layout</td>
+    <td>Edit <code>activity_main.xml</code>, add buttons and textviews</td>
+    <td>LinearLayout with Button: “Load URL”</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>UI Event Handling</td>
+    <td>Use <code>setOnClickListener()</code> to handle button clicks</td>
+    <td><code>btn.setOnClickListener { /* load url */ }</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>View Binding</td>
+    <td>Enable ViewBinding to avoid <code>findViewById()</code></td>
+    <td><code>binding.button.setOnClickListener { ... }</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Permissions</td>
+    <td>Request permissions (e.g., Internet, storage) in manifest</td>
+    <td><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Simple WebView</td>
+    <td>Just for comparison, load URL in WebView</td>
+    <td><code>webView.loadUrl("https://example.com")</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Mini UI App</td>
+    <td>Create simple input box + button to load and show a site</td>
+    <td>Input: URL, Output: Load in WebView (temp)</td>
+  </tr>
+</table>
+
+
+<!-- Week 3 -->
+<h2>🧩 Week 3 – Modular Go + GeckoView Integration</h2>
+
+<h3>📘 Go (Backend – Modules, Interfaces, Packages)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Modules Intro</td>
+    <td>Use <code>go mod init</code> and separate into files</td>
+    <td><code>go mod init browsercore</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Custom Packages</td>
+    <td>Create <code>bookmark</code> and <code>history</code> packages</td>
+    <td>Use <code>package bookmark</code> and import</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Interfaces</td>
+    <td>Define interfaces like <code>SessionStore</code>, <code>Fetcher</code></td>
+    <td><code>type SessionStore interface { Save(...); Load(...) }</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Interface Impl</td>
+    <td>Implement them using struct types (e.g., <code>FileStore</code>)</td>
+    <td>Return interface from factory func</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Error Handling</td>
+    <td>Clean error returns, <code>errors.New</code>, wrapping</td>
+    <td><code>return nil, fmt.Errorf("load failed: %w", err)</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Helper Utils</td>
+    <td>Create <code>utils.go</code> with reusable funcs (log, file etc.)</td>
+    <td><code>LogInfo(), CheckFileExists()</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Project Reorg</td>
+    <td>Restructure your Go files into clean folders: <code>session/</code>, <code>bookmark/</code>, <code>utils/</code></td>
+    <td>Each with tests later</td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – GeckoView Basics)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>GeckoView Setup</td>
+    <td>Add GeckoView dependency (Release)</td>
+    <td>
+      <code>
+        implementation 'org.mozilla.geckoview:geckoview:126.0.20250601'
+      </code>
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Basic Embed</td>
+    <td>Create <code>GeckoSession</code>, <code>GeckoRuntime</code>, attach to <code>GeckoView</code></td>
+    <td><code>geckoView.setSession(session)</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Simple Load</td>
+    <td>Load URL from input box and display</td>
+    <td><code>session.loadUri("https://example.com")</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Back/Forward</td>
+    <td>Implement buttons for <code>goBack()</code> and <code>goForward()</code></td>
+    <td><code>session.canGoBack()</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Progress Bar</td>
+    <td>Listen to session progress, update UI</td>
+    <td><code>onProgressChange()</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Permission Handling</td>
+    <td>Handle geolocation, media, etc.</td>
+    <td>Use <code>GeckoSession.PermissionDelegate</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Mini Gecko Browser</td>
+    <td>Build a mini Gecko browser with URL bar, back, forward</td>
+    <td>Supports loading & basic nav</td>
+  </tr>
+</table>
+
+
+<!-- Week 4 -->
+<h2>🗂️ Week 4 – Persistent Storage (Go) + Profiles & Tabs (Kotlin)</h2>
+
+<h3>📘 Go (Backend – File I/O & BoltDB)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>File Read/Write Basics</td>
+    <td>Practice reading/writing JSON to file</td>
+    <td><code>ioutil.ReadFile()</code>, <code>json.Unmarshal()</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>User Config Files</td>
+    <td>Create per-user config in <code>.json</code></td>
+    <td><code>{ username, bookmarks, theme }</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Intro to BoltDB</td>
+    <td>Store bookmarks/history in BoltDB</td>
+    <td><code>db.Update(...)</code>, <code>db.View(...)</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Buckets</td>
+    <td>Create separate buckets per user: <code>user1_bookmarks</code></td>
+    <td><code>db.CreateBucketIfNotExists([]byte("..."))</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>CRUD in Bolt</td>
+    <td>Implement Save, Load, Delete bookmark entries</td>
+    <td><code>Put([]byte(key), []byte(json))</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Session Store</td>
+    <td>Build an interface-backed session state store using BoltDB</td>
+    <td>Stores tabs, last URL, zoom level etc.</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Test & Cleanup</td>
+    <td>Write test function for DB usage and cleanup logic</td>
+    <td><code>defer db.Close()</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Profiles & Tabs)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>User Profiles</td>
+    <td>Create UI for switching profiles</td>
+    <td>Spinner or dropdown to select user</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Profile Switching</td>
+    <td>On switch, load saved session from Go module</td>
+    <td>Call Go function via `.aar` binding</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Profile Persistence</td>
+    <td>Store last user, session tabs in local file or Go module</td>
+    <td>Use shared storage or IPC call</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Tabs UI Layout</td>
+    <td>Add tab preview list (RecyclerView or ViewPager2)</td>
+    <td>Each tab: title, URL, close button</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Dynamic Tabs</td>
+    <td>Tap to switch, long-press to close, open new tab button</td>
+    <td>TabManager class in Kotlin</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Tab State Persistence</td>
+    <td>On tab switch, store active tab in backend</td>
+    <td>Send JSON via Go-bound call</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Multiple GeckoSessions</td>
+    <td>Bonus: create and reuse multiple sessions without losing state</td>
+    <td>Hold GeckoSession list in a TabManager</td>
+  </tr>
+</table>
+
+
+<!-- Week 5 -->
+<h2>🚫 Week 5 – Adblock Engine (Go) + Request Intercept (Kotlin)</h2>
+
+<h3>📘 Go (Backend – Adblock / DNS Filtering)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Adblock Rule Syntax</td>
+    <td>Understand uBlock / EasyList rule format</td>
+    <td><code>||ads.example.com^</code>, <code>##.sponsored</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Parser</td>
+    <td>Write a parser to extract domain patterns, CSS selectors</td>
+    <td>Split by rule types (domain / element / script)</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Blocking Engine</td>
+    <td>Implement in-memory matcher for domain rules</td>
+    <td><code>func ShouldBlock(url string) bool</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Load Filter Lists</td>
+    <td>Load EasyList/host files into Go memory</td>
+    <td>Parse into `map[string]bool` or trie</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>DNS Blocking</td>
+    <td>Pre-resolve domains and block requests early</td>
+    <td><code>net/url</code> parse + compare host</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Cache & Toggle</td>
+    <td>Toggle adblock globally or per profile</td>
+    <td>Profile config: <code>"adblock_enabled": true</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Unit Tests</td>
+    <td>Test: block known ad links, allow safe domains</td>
+    <td><code>go test adblock_test.go</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Adblock Integration + GeckoView Hooking)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>UI Toggle</td>
+    <td>Add toggle in settings to enable/disable adblock</td>
+    <td>Switch component linked to config</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Request Interception</td>
+    <td>Use <code>GeckoSession.ContentDelegate</code> to intercept URL loads</td>
+    <td><code>onLoadRequest()</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Send URL to Go</td>
+    <td>Pass each request to Go via JNI or gomobile binding</td>
+    <td><code>Adblock.shouldBlock(url)</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Cancel Load</td>
+    <td>If Go returns true (block), cancel the request</td>
+    <td><code>GeckoResponse.Action.CANCEL</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Blocked Counter</td>
+    <td>Show number of blocked requests in toolbar</td>
+    <td><code>TextView.setText("Blocked: 34")</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Allowlist Domains</td>
+    <td>Add per-site allowlisting in Go module</td>
+    <td><code>!||example.com^</code> disables rule</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Test + Debug Logs</td>
+    <td>Log blocked domains in a scrollable log window</td>
+    <td><code>Log.d("Blocked", url)</code></td>
+  </tr>
+</table>
+
+<!-- Week 6 -->
+<h2>⬇️ Week 6 – Download Manager (Go) + Kotlin UI & Notification</h2>
+
+<h3>📘 Go (Backend – Chunked, Resumable Downloads)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Basic HTTP Download</td>
+    <td>Use <code>http.Get</code> or <code>http.Client</code> to fetch files</td>
+    <td>Download small test file to <code>/tmp/</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Progress Tracking</td>
+    <td>Read body in chunks and emit % downloaded</td>
+    <td><code>io.CopyBuffer + ticker</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Chunked Downloads</td>
+    <td>Use <code>Range</code> headers to resume downloads</td>
+    <td><code>req.Header.Set("Range", "bytes=1000-")</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Resume Support</td>
+    <td>Store partials and pick up later with saved offset</td>
+    <td><code>.partial</code> file + DB record</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Queue Management</td>
+    <td>Queue multiple downloads, limit concurrency</td>
+    <td>Use channels + goroutines</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Retry & Fail-safe</td>
+    <td>Retry on timeout, skip failed links, mark errors</td>
+    <td>Configurable backoff + retry count</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Interface Binding</td>
+    <td>Create clean Go functions for Kotlin to call</td>
+    <td><code>StartDownload(url, destination)</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Download UI, Status & Error Handling)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Storage Permissions</td>
+    <td>Request proper file access (Scoped Storage or SAF)</td>
+    <td><code>Manifest.permission.MANAGE_EXTERNAL_STORAGE</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Download UI</td>
+    <td>List active downloads with progress bars</td>
+    <td>Use RecyclerView + custom DownloadAdapter</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Start Download</td>
+    <td>Call Go binding to trigger file download</td>
+    <td><code>GoDownloader.start(url, filePath)</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Progress Updates</td>
+    <td>Use callbacks or polling to update progress</td>
+    <td>Bind Go progress to Kotlin LiveData</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Notification Support</td>
+    <td>Show notification on start, success, fail</td>
+    <td><code>NotificationCompat.Builder</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Pause/Resume UI</td>
+    <td>Add buttons for pause/resume for large files</td>
+    <td><code>GoDownloader.pause(url)</code>, etc.</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Error Handling</td>
+    <td>Show "Retry", "Open File", and "Cancel" options</td>
+    <td>Snackbar/Toast + retry logic bound to Go</td>
+  </tr>
+</table>
+
+<!-- Week 7 -->
+<h2>⚙️ Week 7 – Settings Storage (Go) + UI Integration (Kotlin)</h2>
+
+<h3>📘 Go (Backend – Settings / Profile Config)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Config Format</td>
+    <td>Decide on format: JSON recommended (easy in Go + Kotlin)</td>
+    <td><code>config.json</code>: <code>{"adblock":true,"dark_mode":false}</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Struct Design</td>
+    <td>Create a struct for profile settings</td>
+    <td><code>type Settings struct { Adblock bool, Theme string }</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Read/Write</td>
+    <td>Use <code>encoding/json</code> and <code>ioutil</code> or <code>os</code> for I/O</td>
+    <td><code>json.Unmarshal / json.MarshalIndent</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Auto-Save</td>
+    <td>Save config automatically on toggle from UI</td>
+    <td><code>SaveSettings(profileID, settings)</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Live Update</td>
+    <td>Return current config to Kotlin when requested</td>
+    <td><code>GetSettings(profileID) → JSON string</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Per-Profile Folder</td>
+    <td>Each user has their own settings file</td>
+    <td><code>/data/profiles/arup/config.json</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Default Fallbacks</td>
+    <td>If no file found, load default values</td>
+    <td>Return default struct + write to file</td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Settings UI & Theme Toggle)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Settings Layout</td>
+    <td>Use a <code>PreferenceFragmentCompat</code> or custom view</td>
+    <td><code>SwitchPreferenceCompat</code> for toggles</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Load from Go</td>
+    <td>Call Go binding to get current settings</td>
+    <td><code>val settings = GoAPI.getSettings()</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Apply Changes Live</td>
+    <td>Adblock toggle: reflect immediately in GeckoView logic</td>
+    <td><code>geckoSession.reload()</code> only if needed</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Theme Toggle</td>
+    <td>Implement dark/light mode via shared Kotlin theme logic</td>
+    <td><code>AppCompatDelegate.setDefaultNightMode()</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Save to Go</td>
+    <td>Call Go function on any settings change</td>
+    <td><code>GoAPI.setSetting("adblock", true)</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Reset/Defaults</td>
+    <td>Add “Reset settings” button to load default config</td>
+    <td><code>GoAPI.resetSettings()</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Apply on Profile Switch</td>
+    <td>When switching user, load and apply their settings immediately</td>
+    <td><code>loadSettings(profileId)</code> before UI draws</td>
+  </tr>
+</table>
+
+<!-- Week 8 -->
+<h2>👥 Week 8 – Multi-User Sessions & Context Switching</h2>
+
+<h3>📘 Go (Backend – Session Manager + Isolation)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Session Struct</td>
+    <td>Define a struct: userID, tabs, history paths, settings file, etc.</td>
+    <td><code>type Session struct { ID string; Tabs []string }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Create & Switch</td>
+    <td>Implement <code>CreateSession()</code> and <code>SwitchSession(userID)</code></td>
+    <td>All state stored in folders: <code>/profiles/arup/</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Context Isolation</td>
+    <td>Ensure tabs/history/settings are separate per session</td>
+    <td>Load different JSON files per user</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Session List</td>
+    <td>Return array of all known sessions to Kotlin</td>
+    <td><code>func ListSessions() []Session</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Active State</td>
+    <td>Track “active user ID” globally</td>
+    <td>Use <code>globalState.json</code> or in-memory var</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Logout/Cleanup</td>
+    <td>Release memory, save tabs & state on logout</td>
+    <td><code>SaveTabs(userID)</code> on switch</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Bind to Kotlin</td>
+    <td>Expose: <code>createUser(id)</code>, <code>switchUser(id)</code>, <code>listUsers()</code></td>
+    <td>Gomobile-exported functions</td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Profile Management & Switching)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>User Selection UI</td>
+    <td>Create a screen with user cards or avatars</td>
+    <td>“Tap to switch to Rahul / Arup / Guest”</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Profile Icons</td>
+    <td>Add profile picture/name + last used time</td>
+    <td>Use Room/Prefs for simple metadata</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>New Profile Flow</td>
+    <td>“+ Add user” with name input and optional avatar</td>
+    <td><code>GoAPI.createUser("somnath")</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Switch Logic</td>
+    <td>On switch, call Go → reload settings, bookmarks, tabs</td>
+    <td><code>GoAPI.switchUser("rahul")</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Visual Transitions</td>
+    <td>Use smooth fade or slide transitions during switch</td>
+    <td><code>MotionLayout</code> or <code>Activity override</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Session Restore</td>
+    <td>After switching, restore tabs, bookmarks, etc.</td>
+    <td>Call <code>getTabs()</code> and load into GeckoView</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>No Page Reload</td>
+    <td>Try switching profiles without destroying browser view</td>
+    <td>Use multiple GeckoSessions in background or cache tabs</td>
+  </tr>
+</table>
+
+
+<!-- Week 9 -->
+<h2>🗂️ Week 9 – Tab System + Persistent Sessions</h2>
+
+<h3>📘 Go (Backend – Tab Management per User)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Tab Struct</td>
+    <td>Define a struct for each open tab</td>
+    <td><code>type Tab struct { URL string; Title string; LastOpened time.Time }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Tabs per User</td>
+    <td>Each profile stores its open tabs in a JSON file</td>
+    <td><code>/profiles/arup/tabs.json</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Tab Manager</td>
+    <td>Expose Go functions: <code>AddTab()</code>, <code>CloseTab()</code>, <code>ListTabs()</code></td>
+    <td>Return JSON list of tabs to Kotlin</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Persistent Save</td>
+    <td>Write updated tab list every few seconds or on change</td>
+    <td>Use goroutine + channel debounce to avoid spamming writes</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Session Restore</td>
+    <td>When user logs in, load their last tab list</td>
+    <td>Return top tab URL + list of others</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Close Handling</td>
+    <td>Ensure closing a tab updates tab file</td>
+    <td><code>RemoveTab(index)</code> writes to JSON</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>API Binding</td>
+    <td>Export tab functions to Kotlin via gomobile</td>
+    <td><code>func ListTabs(userID string) string</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Tab UI + Restoration)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Tab Bar UI</td>
+    <td>Create bottom or top tab bar with list of open tabs</td>
+    <td>Use <code>RecyclerView</code> or <code>TabLayout</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Add Tab Flow</td>
+    <td>“+” button opens new GeckoSession and adds to Go</td>
+    <td><code>GoAPI.addTab("https://example.com")</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Close Tab Flow</td>
+    <td>Swipe or long-press to close tab and call Go function</td>
+    <td><code>GoAPI.closeTab(index)</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Restore Tabs</td>
+    <td>When opening browser, ask Go for previous tabs</td>
+    <td><code>val tabs = GoAPI.listTabs("arup")</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Switching Tabs</td>
+    <td>Handle switching between active GeckoSessions</td>
+    <td>Keep a map of <code>tabID → GeckoSession</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>UI Sync</td>
+    <td>Keep Go tab list in sync with tab bar UI</td>
+    <td>Auto-call <code>GoAPI.saveTabs()</code> on change</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Session Persistence</td>
+    <td>Ensure all tabs persist after app kill + resume</td>
+    <td>Reload from <code>tabs.json</code> on startup</td>
+  </tr>
+</table>
+
+
+<!-- Week 10 -->
+<h2>📖 Week 10 – Bookmarks, History & Private Mode</h2>
+
+<h3>📘 Go (Backend – Bookmark & History Engine)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Bookmark Struct</td>
+    <td>Create a struct with title, URL, favicon, timestamp</td>
+    <td><code>type Bookmark struct { URL string; Title string; Time int64 }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Add & Remove</td>
+    <td>Functions: <code>AddBookmark()</code>, <code>RemoveBookmark()</code></td>
+    <td>Store in <code>/profiles/rahul/bookmarks.json</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Bookmark List</td>
+    <td>Return all bookmarks as JSON string</td>
+    <td><code>func ListBookmarks(userID string) string</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>History Struct</td>
+    <td>Similar to bookmark, but with visit count, last visit</td>
+    <td><code>type HistoryEntry struct { URL string; Visits int; Last time.Time }</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>History Append</td>
+    <td>On page load: append to history or update existing</td>
+    <td>Write <code>UpdateHistory(userID, url, title)</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>List/Filter History</td>
+    <td>Return recent or search-matching history</td>
+    <td><code>ListHistory(userID, filter string)</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Private Mode Toggle</td>
+    <td>Add memory-only switch: skip writing history/bookmarks</td>
+    <td>Use global flag <code>isPrivate = true</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – UI for Bookmarks, History, Private Mode)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Bookmark Button</td>
+    <td>Add bookmark icon to browser toolbar</td>
+    <td><code>GoAPI.addBookmark(url, title)</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Bookmark Screen</td>
+    <td>Create a fragment or activity showing saved bookmarks</td>
+    <td><code>val list = GoAPI.listBookmarks("somnath")</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Open/Delete Bookmark</td>
+    <td>Tap to load, long press to remove</td>
+    <td><code>GoAPI.removeBookmark(url)</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>History UI</td>
+    <td>Create vertical list with time + title + URL</td>
+    <td>Use RecyclerView + <code>GoAPI.listHistory(userID)</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Search in History</td>
+    <td>Text input filters history by title/URL</td>
+    <td><code>GoAPI.listHistory(user, "youtube")</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Private Mode Toggle</td>
+    <td>UI switch to enable private mode (mask tab bar color too)</td>
+    <td><code>GoAPI.setPrivateMode(true)</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Disable Log on Private</td>
+    <td>Ensure no history/bookmarks saved in private</td>
+    <td>Condition: <code>if !isPrivate { SaveHistory(...) }</code></td>
+  </tr>
+</table>
+
+<!-- Week 11 -->
+<h2>📥 Week 11 – Download Manager with Resume & Background Support</h2>
+
+<h3>📘 Go (Backend – File Download Engine)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Download Struct</td>
+    <td>Define struct to track download info: URL, filename, progress, status</td>
+    <td><code>type Download struct { URL, Filename, Status string; BytesDone, BytesTotal int64 }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Start Download</td>
+    <td>Write <code>StartDownload(url, destPath)</code> using HTTP GET</td>
+    <td>Use <code>http.Get</code> + io.Copy + progress tracking</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Progress Tracker</td>
+    <td>Track total size and downloaded bytes</td>
+    <td>Use <code>resp.ContentLength</code> and a custom Writer</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Download Queue</td>
+    <td>Build a queue of downloads (FIFO)</td>
+    <td>Channel-based dispatcher + goroutine per task</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Pause/Resume Logic</td>
+    <td>Add ability to pause/resume downloads using range headers</td>
+    <td>Use <code>"Range: bytes=..."</code> in request</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Status API</td>
+    <td>Return all download statuses as JSON</td>
+    <td><code>ListDownloads(userID)</code> with progress, percent, ETA</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Persist Metadata</td>
+    <td>Save download metadata to disk for resume after app crash</td>
+    <td>e.g., <code>/profiles/somnath/downloads.json</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – UI, Download Controls)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Trigger Download</td>
+    <td>Detect downloadable links or files from GeckoSession</td>
+    <td>Use <code>onDownload()</code> listener or MIME checks</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Download Prompt</td>
+    <td>Ask user to confirm filename/location (optional)</td>
+    <td><code>GoAPI.startDownload(url, filename)</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Download List UI</td>
+    <td>RecyclerView list of active/completed downloads</td>
+    <td><code>val list = GoAPI.listDownloads(userID)</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Progress Display</td>
+    <td>Show filename, %, speed, ETA for each download</td>
+    <td>Use coroutine to poll Go every few seconds</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Pause/Resume Buttons</td>
+    <td>Long press or menu option per download</td>
+    <td><code>GoAPI.pauseDownload(url)</code>, <code>resumeDownload(url)</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>File Access & Open</td>
+    <td>Let users open or delete downloaded files</td>
+    <td>Use SAF or file:// URIs</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Crash Recovery</td>
+    <td>When app restarts, reload previous downloads and show status</td>
+    <td>Read metadata from Go and resume downloads if needed</td>
+  </tr>
+</table>
+
+
+<!-- Week 12 -->
+<h2>🛡️ Week 12 – Adblock, DNS Filtering & Privacy Engine</h2>
+
+<h3>📘 Go (Backend – Adblock, DNS Filtering, Privacy Rules)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Rule Engine Basics</td>
+    <td>Design a struct to load rules: domains, URLs, patterns</td>
+    <td><code>type Rule struct { Type string; Pattern string }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Adblock Parser</td>
+    <td>Support EasyList/uBlock-style blocking rules</td>
+    <td>Parse lines like <code>||doubleclick.net^</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>DNS Filtering</td>
+    <td>Intercept hostnames and block based on blacklist</td>
+    <td><code>if strings.HasSuffix(domain, "ads.com") { block }</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Tracker Blocker</td>
+    <td>Block known tracking scripts or URLs</td>
+    <td>Use hardcoded list or download from remote</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Header Spoofing</td>
+    <td>Replace User-Agent, language, and referer in outgoing headers</td>
+    <td><code>req.Header.Set("User-Agent", "CustomAgent/1.0")</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Privacy Config</td>
+    <td>Allow toggling: block_ads, spoof_headers, block_dns</td>
+    <td>Read from <code>profile/privacy.json</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>API to Kotlin</td>
+    <td>Expose methods: <code>shouldBlock(url)</code>, <code>applyHeaders(req)</code></td>
+    <td>Use <code>gomobile bind</code> to export</td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Privacy UI, GeckoView Intercepts)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Privacy Settings Page</td>
+    <td>Switches for adblock, header spoofing, tracker blocking</td>
+    <td><code>GoAPI.setPrivacyConfig(userID, "block_ads", true)</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Resource Intercept Hook</td>
+    <td>Use <code>GeckoSession.ContentDelegate</code> to check URLs</td>
+    <td><code>if GoAPI.shouldBlock(url) return empty response</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>DNS Hook (Optional)</td>
+    <td>Use custom DNS resolver (if needed)</td>
+    <td>Override DNS request with safe resolver or block</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Custom Headers</td>
+    <td>Modify request headers before sending</td>
+    <td>Inject fake user-agent, referer, language</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Log Blocked Requests</td>
+    <td>UI list: Show what was blocked and why</td>
+    <td><code>GoAPI.getBlockedLog(userID)</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Enable per-user</td>
+    <td>Use profile ID to load privacy config separately</td>
+    <td>Each user gets their own block settings</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Test Tracking Sites</td>
+    <td>Load test URLs like <a href="https://amiunique.org">amiunique.org</a></td>
+    <td>Check fingerprinting resistance and blocking</td>
+  </tr>
+</table>
+
+<!-- Week 13 -->
+<h2>🧾 Week 13 – Multi-tab Support & Session Isolation</h2>
+
+<h3>📘 Go (Backend – Tab Session Tracker & Sync)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Tab Metadata</td>
+    <td>Create struct to represent each tab session</td>
+    <td><code>type Tab struct { ID string; URL string; Title string; Timestamp int64 }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Open/Close Tabs API</td>
+    <td>Add <code>OpenTab(userID, url)</code> and <code>CloseTab(tabID)</code></td>
+    <td>Return new tab ID for Kotlin to use</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>List Tabs API</td>
+    <td>Return all active tabs for a user</td>
+    <td><code>ListTabs(userID)</code> → JSON list of URLs & titles</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Restore Tabs</td>
+    <td>On app restart, restore last opened tabs</td>
+    <td>Use file <code>userID/tabs.json</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Update Tab Info</td>
+    <td>Track title, favicon, last activity</td>
+    <td><code>UpdateTab(tabID, title, faviconURL)</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Session Save</td>
+    <td>Periodically save tab session data</td>
+    <td>Use goroutine with interval write</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Expose Sync API</td>
+    <td>Let Kotlin trigger a manual save/refresh</td>
+    <td><code>GoAPI.syncTabs(userID)</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Tab UI, GeckoView Instances)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Tab Data Class</td>
+    <td>Define a class to hold tab info (ID, title, favicon, etc.)</td>
+    <td><code>data class TabInfo(val id: String, val title: String...)</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>TabManager</td>
+    <td>Build manager class to handle GeckoSessions for each tab</td>
+    <td><code>Map<tabId, GeckoSession></code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Create Tab</td>
+    <td>Add FAB or menu option to create a new tab</td>
+    <td>Calls Go → creates tab ID → new GeckoSession()</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Switch Tabs UI</td>
+    <td>Bottom bar, drawer, or horizontal swipe to switch tabs</td>
+    <td>Bind correct GeckoSession when switching</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Close Tab</td>
+    <td>Long press or button to close a tab</td>
+    <td>Call GoAPI.closeTab(tabID) and destroy session</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Tab Restore</td>
+    <td>On app start, restore previous tabs and sessions</td>
+    <td>Loop through GoAPI.listTabs() and recreate views</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Visual Improvements</td>
+    <td>Show tab preview, favicon, title in tab switcher</td>
+    <td>Use card layout + mini screenshot per tab (optional)</td>
+  </tr>
+</table>
+
+<!-- Week 14 -->
+<h2>👥 Week 14 – Multi-user Support with Isolated Profiles</h2>
+
+<h3>📘 Go (Backend – User Manager, Profile Data Isolation)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>User Profile Struct</td>
+    <td>Create a base structure to hold user config and tab list</td>
+    <td><code>type UserProfile struct { ID string; Name string; Tabs []Tab; PrivacyConfig map[string]bool }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Create User API</td>
+    <td>Add <code>CreateUser(name)</code> and save to disk</td>
+    <td>Stored in <code>profiles/{userID}/profile.json</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Switch User API</td>
+    <td>Implement <code>SwitchUser(userID)</code> and load all data</td>
+    <td>Load tabs, settings, privacy rules</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>List Users</td>
+    <td>Return all registered user profiles</td>
+    <td><code>ListUsers()</code> → JSON with ID, name</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Delete User</td>
+    <td>Allow deletion of a user and cleanup of all files</td>
+    <td>Use <code>os.RemoveAll()</code> on the folder</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>User Isolation Logic</td>
+    <td>Ensure all Go operations are user-scoped (tabs, privacy, history)</td>
+    <td>Pass <code>userID</code> into all exported methods</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Save on Switch</td>
+    <td>Save current user’s state before switching</td>
+    <td>Write tab state, privacy, settings</td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – UI for Multi-user, Live Switching)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>User List Screen</td>
+    <td>List all users, show current one, allow switching</td>
+    <td>Call <code>GoAPI.listUsers()</code> and populate a menu</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Create User Dialog</td>
+    <td>Prompt for name and call <code>GoAPI.createUser(name)</code></td>
+    <td>Auto-switch to new user profile</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>User Switch Handler</td>
+    <td>Trigger <code>GoAPI.switchUser(userID)</code>, destroy current sessions</td>
+    <td>Recreate tabs using new user's session data</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Session Cleanup</td>
+    <td>Properly destroy all active GeckoSessions on switch</td>
+    <td><code>session.close()</code> before reloading new ones</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Auto-save on Background</td>
+    <td>When app goes to background, save active user's state</td>
+    <td>Use <code>onPause()</code> → call <code>GoAPI.sync()</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Live UI Update</td>
+    <td>Update user display, tab UI, privacy UI when user changes</td>
+    <td>Bind UI state to <code>currentUserID</code></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Per-user Settings UI</td>
+    <td>Use profile ID to load saved themes, privacy switches</td>
+    <td><code>GoAPI.getPrivacyConfig(userID)</code></td>
+  </tr>
+</table>
+
+
+<!-- Week 15 -->
+<h2>⬇️ Week 15 – Download Manager + History Tracking</h2>
+
+<h3>📘 Go (Backend – Download Engine + History DB)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Download Struct</td>
+    <td>Design download object: ID, URL, progress, path</td>
+    <td><code>type Download struct { ID, URL, Path string; Progress int; Status string }</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Basic Downloader</td>
+    <td>Implement single-threaded downloader with resume</td>
+    <td>Use <code>http.NewRequest("GET")</code> + <code>Range</code> headers</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Chunked Downloads</td>
+    <td>Split large files into chunks with goroutines</td>
+    <td>Each part writes to temp, then combine</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Pause/Resume API</td>
+    <td>Track byte ranges, store state to disk</td>
+    <td><code>PauseDownload(id)</code>, <code>ResumeDownload(id)</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Download Progress Sync</td>
+    <td>Expose <code>GetProgress(id)</code> as public API</td>
+    <td>Kotlin can poll for percentage</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Download Notifications</td>
+    <td>Expose Go callbacks / listener hooks</td>
+    <td>Optional: use callback binding for Kotlin</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>History Engine</td>
+    <td>Track visited URLs, page title, visit time per user</td>
+    <td>Append to <code>profiles/{userID}/history.json</code></td>
+  </tr>
+</table>
+
+<h3>📗 Kotlin (Frontend – Download UI + History Viewer)</h3>
+<table>
+  <tr><th>Day</th><th>Topic</th><th>What to Do</th><th>Example</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Download Request Hook</td>
+    <td>Hook into GeckoView’s <code>onDownloadRequested</code></td>
+    <td>Intercept file downloads → call GoAPI</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Start Download</td>
+    <td>Call <code>GoAPI.startDownload(url, userID)</code></td>
+    <td>Store download ID and track status</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Progress UI</td>
+    <td>Show download progress using <code>ProgressBar</code></td>
+    <td>Poll <code>GoAPI.getProgress(downloadID)</code> every few sec</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Pause / Resume / Cancel</td>
+    <td>Add buttons to manage active downloads</td>
+    <td>Trigger Go methods: pause/resume/cancel</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Download Folder Access</td>
+    <td>Show completed downloads in a folder UI</td>
+    <td>Use Kotlin <code>File()</code> and <code>RecyclerView</code></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Visit History Logger</td>
+    <td>On page load finished, call <code>GoAPI.addHistory(url, title)</code></td>
+    <td>Automatically update history DB</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>History Viewer UI</td>
+    <td>Create a screen showing history by date, title</td>
+    <td>Use <code>RecyclerView</code> with search/filter support</td>
+  </tr>
+</table>
+</body>
+</html>
